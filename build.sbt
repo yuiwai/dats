@@ -8,3 +8,9 @@ lazy val stations = project
     name := "dats-stations",
     crossScalaVersions := Seq("2.11.11", "2.12.8", "2.13.1")
   )
+
+lazy val comics = project
+  .in(file("comics"))
+  .settings(
+    name := "dats-comics"
+  )
