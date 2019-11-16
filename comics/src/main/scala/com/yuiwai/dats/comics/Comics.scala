@@ -18,7 +18,7 @@ final case class SingleComic(
 final case class SeriesComic(
   isbn: String,
   series: Series,
-  number: Option[Int],
+  number: Int,
   content: Content,
   publishedAt: Date) extends Comic {
   lazy val title: String = series.title
@@ -54,6 +54,40 @@ sealed trait Content
 final case class Text(value: String) extends Content
 case object NoContent extends Content
 
+
 object Comics {
+  // Authors
+  val TsutomNihei = Author("弐瓶 勉", NoContent)
+
+  // Publishers
+  val Kodansha = Publisher("講談社")
+
+  val Blame = Series(
+    "BLAME!",
+    TsutomNihei,
+    Kodansha
+  )
+  val Blame_1 = SeriesComic("978-4-06-314182-5", Blame, 1, NoContent, Date(1998, 6, 23))
+  val Blame_2 = SeriesComic("978-4-06-314194-8", Blame, 2, NoContent, Date(1998, 12, 18))
+  val Blame_3 = SeriesComic("978-4-06-314218-1", Blame, 3, NoContent, Date(1999, 8, 23))
+  val Blame_4 = SeriesComic("978-4-06-314235-8", Blame, 4, NoContent, Date(2000, 3, 23))
+  val Blame_5 = SeriesComic("978-4-06-314251-8", Blame, 5, NoContent, Date(2000, 9, 22))
+  val Blame_6 = SeriesComic("978-4-06-314263-1", Blame, 6, NoContent, Date(2001, 3, 23))
+  val Blame_7 = SeriesComic("978-4-06-314277-8", Blame, 7, NoContent, Date(2001, 10, 23))
+  val Blame_8 = SeriesComic("978-4-06-314289-1", Blame, 8, NoContent, Date(2002, 4, 23))
+  val Blame_9 = SeriesComic("978-4-06-314310-2", Blame, 9, NoContent, Date(2002, 12, 20))
+  val Blame_10 = SeriesComic("978-4-06-314328-7", Blame, 10, NoContent, Date(2003, 9, 22))
+
+  val Noise = SingleComic(
+    "4-06-314278-74-06-314278-7",
+    "NOiSE",
+    TsutomNihei,
+    NoContent,
+    Kodansha,
+    Date(2001, 10, 23)
+  )
+}
+
+object Elements {
 
 }
