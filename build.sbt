@@ -1,6 +1,6 @@
 scalaVersion in ThisBuild := "2.13.1"
-organization in ThisBuild := "com.yuiwai"
 version in ThisBuild := "0.1.0-SNAPSHOT"
+organization in ThisBuild := "com.yuiwai"
 
 lazy val stations = project
   .in(file("stations"))

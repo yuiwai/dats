@@ -2,7 +2,7 @@ package com.yuiwai.dats.comics
 
 sealed trait Comic {
   def isbn: String
-  def title: Title,
+  def title: Title
   def author: Author
   def content: Content
   def publisher: Publisher
