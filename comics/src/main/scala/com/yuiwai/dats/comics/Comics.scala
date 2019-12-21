@@ -1,5 +1,7 @@
 package com.yuiwai.dats.comics
 
+import scala.collection.SortedMap
+
 sealed trait Comic {
   def isbn: String
   def title: Title
@@ -30,6 +32,14 @@ final case class Series(title: Title, author: Author, publisher: Publisher)
 final case class Author(name: String, content: Content)
 final case class Publisher(name: String)
 final case class Date(year: Int, month: Int, day: Int)
+object Date {
+  implicit def dateOrdering(implicit tplIntOrd: Ordering[(Int, Int, Int)]): Ordering[Date] =
+    (x: Date, y: Date) => tplIntOrd.compare((x.year, x.month, x.day), (y.year, y.month, y.day))
+}
+
+trait Chronicle[T, D] {
+  val items: SortedMap[T, D]
+}
 
 // 作中の構成要素
 sealed trait Element
@@ -38,6 +48,7 @@ final case class Item(name: String, content: Content) extends Element
 final case class Vehicle() extends Element
 final case class Organization(name: String) extends Element
 final case class Role(name: String) extends Element
+final case class Event(name: String) extends Element
 
 // 関連
 sealed trait Relation
