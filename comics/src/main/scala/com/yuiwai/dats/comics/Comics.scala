@@ -9,6 +9,7 @@ sealed trait Comic {
   def content: Content
   def publisher: Publisher
   def publishedAt: Date
+  def fullTitle: String
 }
 final case class Title(value: String) extends AnyVal
 final case class SingleComic(
@@ -17,7 +18,9 @@ final case class SingleComic(
   author: Author,
   content: Content,
   publisher: Publisher,
-  publishedAt: Date) extends Comic
+  publishedAt: Date) extends Comic {
+  override def fullTitle: String = title.value
+}
 final case class SeriesComic(
   isbn: String,
   series: Series,
@@ -27,6 +30,7 @@ final case class SeriesComic(
   lazy val title: Title = series.title
   lazy val author: Author = series.author
   lazy val publisher: Publisher = series.publisher
+  override def fullTitle: String = s"${title.value} ($number)"
 }
 final case class Series(title: Title, author: Author, publisher: Publisher)
 final case class Author(name: String, content: Content)
